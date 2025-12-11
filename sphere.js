@@ -6,6 +6,9 @@ class WireframeSphere {
     this.mouse = { x: 0, y: 0 };
     this.targetRotation = { x: 0, y: 0 };
     this.currentRotation = { x: 0, y: 0 };
+    this.isHovering = false;
+    this.rotationSpeed = 1;
+    this.targetRotationSpeed = 1;
 
     this.init();
     this.initBackground();
@@ -194,6 +197,14 @@ class WireframeSphere {
       this.mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
     });
 
+    // Sphere container hover
+    this.container.addEventListener("mouseenter", () => {
+      this.targetRotationSpeed = 3;
+    });
+    this.container.addEventListener("mouseleave", () => {
+      this.targetRotationSpeed = 1;
+    });
+
     // Window resize
     window.addEventListener("resize", () => this.onResize());
   }
@@ -218,6 +229,10 @@ class WireframeSphere {
   animate() {
     requestAnimationFrame(() => this.animate());
 
+    // Smooth rotation speed transition
+    this.rotationSpeed +=
+      (this.targetRotationSpeed - this.rotationSpeed) * 0.05;
+
     // Smooth mouse following
     this.targetRotation.x = this.mouse.y * 0.5;
     this.targetRotation.y = this.mouse.x * 0.5;
@@ -231,13 +246,13 @@ class WireframeSphere {
     this.sphereGroup.rotation.x = this.currentRotation.x;
     this.sphereGroup.rotation.y = this.currentRotation.y;
 
-    // Add subtle continuous rotation
-    this.wireframeSphere.rotation.x += 0.001;
-    this.wireframeSphere.rotation.y += 0.002;
-    this.wireframeSphere2.rotation.x -= 0.0015;
-    this.wireframeSphere2.rotation.y -= 0.001;
-    this.innerSphere.rotation.x += 0.002;
-    this.innerSphere.rotation.y -= 0.001;
+    // Add subtle continuous rotation (speed affected by hover)
+    this.wireframeSphere.rotation.x += 0.001 * this.rotationSpeed;
+    this.wireframeSphere.rotation.y += 0.002 * this.rotationSpeed;
+    this.wireframeSphere2.rotation.x -= 0.0015 * this.rotationSpeed;
+    this.wireframeSphere2.rotation.y -= 0.001 * this.rotationSpeed;
+    this.innerSphere.rotation.x += 0.002 * this.rotationSpeed;
+    this.innerSphere.rotation.y -= 0.001 * this.rotationSpeed;
 
     // Animate background
     this.bgParticles.rotation.y += 0.0002;
