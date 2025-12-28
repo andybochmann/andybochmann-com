@@ -147,11 +147,19 @@ body {
     font-size: 1.1rem;
     color: rgba(255, 255, 255, 0.5);
     font-weight: 300;
-    margin-bottom: 32px;
+    margin-bottom: 28px;
+}
+
+.links {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
 }
 
 .skills {
-    margin-bottom: 32px;
+    margin-bottom: 0;
 }
 
 .skill-category {
@@ -201,22 +209,15 @@ body {
     transform: translateY(-1px);
 }
 
-.links {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
 .link {
     color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
-    font-size: 1.15rem;
+    font-size: 1rem;
     transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    padding: 8px 12px;
-    margin-left: -12px;
+    gap: 8px;
+    padding: 8px 14px;
     border-radius: 8px;
     position: relative;
 }
@@ -230,8 +231,8 @@ body {
 
 .link:hover {
     color: #ffffff;
-    background: rgba(100, 140, 180, 0.1);
-    transform: translateX(4px);
+    background: rgba(100, 140, 180, 0.15);
+    transform: translateY(-2px);
 }
 
 .link:hover svg {
@@ -289,7 +290,7 @@ body {
     }
 
     .links {
-        align-items: center;
+        justify-content: center;
     }
 
     .sphere-container {
@@ -328,7 +329,8 @@ body {
     }
 
     .link {
-        font-size: 1.05rem;
+        font-size: 0.95rem;
+        padding: 7px 12px;
     }
 }
 
@@ -374,7 +376,13 @@ body {
     }
 
     .link {
+        font-size: 0.9rem;
         padding: 6px 10px;
-        margin-left: -10px;
+        gap: 6px;
+    }
+
+    .link svg {
+        width: 18px;
+        height: 18px;
     }
 }
