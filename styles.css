@@ -147,7 +147,58 @@ body {
     font-size: 1.1rem;
     color: rgba(255, 255, 255, 0.5);
     font-weight: 300;
-    margin-bottom: 40px;
+    margin-bottom: 32px;
+}
+
+.skills {
+    margin-bottom: 32px;
+}
+
+.skill-category {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 16px;
+    align-items: start;
+    margin-bottom: 12px;
+}
+
+.skill-category:last-child {
+    margin-bottom: 0;
+}
+
+.skill-category-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-top: 2px;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.skill-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    background: rgba(100, 140, 180, 0.12);
+    border: 1px solid rgba(100, 140, 180, 0.2);
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.skill-tag:hover {
+    background: rgba(100, 140, 180, 0.22);
+    border-color: rgba(100, 140, 180, 0.35);
+    color: rgba(255, 255, 255, 1);
+    transform: translateY(-1px);
 }
 
 .links {
@@ -260,6 +311,22 @@ body {
         margin-bottom: 35px;
     }
 
+    .skill-category {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+
+    .skill-category-title {
+        font-size: 0.75rem;
+        padding-top: 0;
+    }
+
+    .skill-tag {
+        font-size: 0.8rem;
+        padding: 4px 10px;
+    }
+
     .link {
         font-size: 1.05rem;
     }
@@ -276,6 +343,21 @@ body {
 
     .title {
         font-size: 1rem;
+    }
+
+    .skill-category {
+        grid-template-columns: 1fr;
+        gap: 6px;
+        margin-bottom: 14px;
+    }
+
+    .skill-category-title {
+        font-size: 0.7rem;
+    }
+
+    .skill-tag {
+        font-size: 0.75rem;
+        padding: 3px 8px;
     }
 
     .sphere-container {
