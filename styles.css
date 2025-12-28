@@ -4,6 +4,19 @@
     box-sizing: border-box;
 }
 
+/* Screen reader only utility */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     background:
@@ -87,12 +100,21 @@ body {
     border-radius: 24px;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    box-shadow: 
+    box-shadow:
         0 25px 50px -12px rgba(0, 0, 0, 0.6),
         0 0 0 1px rgba(80, 120, 160, 0.08),
         inset 0 1px 0 rgba(100, 150, 200, 0.1);
     overflow: hidden;
     animation: fadeInUp 0.8s ease-out;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    border-color: rgba(100, 140, 180, 0.25);
+    box-shadow:
+        0 30px 60px -12px rgba(0, 0, 0, 0.7),
+        0 0 0 1px rgba(80, 120, 160, 0.15),
+        inset 0 1px 0 rgba(100, 150, 200, 0.15);
 }
 
 .card-content {
@@ -138,19 +160,46 @@ body {
     color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
     font-size: 1.15rem;
-    transition: color 0.2s ease;
+    transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
     gap: 10px;
+    padding: 8px 12px;
+    margin-left: -12px;
+    border-radius: 8px;
+    position: relative;
 }
 
 .link svg {
     width: 20px;
     height: 20px;
     fill: currentColor;
+    transition: transform 0.3s ease;
 }
 
 .link:hover {
+    color: #ffffff;
+    background: rgba(100, 140, 180, 0.1);
+    transform: translateX(4px);
+}
+
+.link:hover svg {
+    transform: scale(1.1);
+}
+
+.link:focus {
+    outline: 2px solid rgba(100, 140, 180, 0.6);
+    outline-offset: 2px;
+    color: #ffffff;
+}
+
+.link:focus:not(:focus-visible) {
+    outline: none;
+}
+
+.link:focus-visible {
+    outline: 2px solid rgba(100, 140, 180, 0.8);
+    outline-offset: 2px;
     color: #ffffff;
 }
 
@@ -163,6 +212,16 @@ body {
 
 .sphere-container:hover {
     transform: scale(1.05);
+}
+
+.sphere-container:focus {
+    outline: 2px solid rgba(100, 140, 180, 0.6);
+    outline-offset: 4px;
+    border-radius: 8px;
+}
+
+.sphere-container:focus:not(:focus-visible) {
+    outline: none;
 }
 
 /* Responsive adjustments */
@@ -183,8 +242,13 @@ body {
     }
 
     .sphere-container {
-        width: 320px;
-        height: 320px;
+        width: 350px;
+        height: 350px;
+        margin-bottom: 20px;
+    }
+
+    .sphere-container:hover {
+        transform: scale(1.03);
     }
 
     .name {
@@ -215,11 +279,20 @@ body {
     }
 
     .sphere-container {
-        width: 260px;
-        height: 260px;
+        width: 280px;
+        height: 280px;
+    }
+
+    .sphere-container:hover {
+        transform: scale(1.02);
     }
 
     .card {
         border-radius: 16px;
+    }
+
+    .link {
+        padding: 6px 10px;
+        margin-left: -10px;
     }
 }

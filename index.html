@@ -42,8 +42,9 @@
     </script>
   </head>
   <body>
-    <div class="loading-overlay" id="loading-overlay">
-      <div class="loading-spinner"></div>
+    <div class="loading-overlay" id="loading-overlay" role="status" aria-live="polite">
+      <div class="loading-spinner" aria-label="Loading"></div>
+      <span class="sr-only">Loading 3D visualization...</span>
     </div>
 
     <div class="background-canvas" id="background-canvas"></div>
@@ -95,7 +96,7 @@
             </nav>
           </div>
 
-          <div class="sphere-container" id="sphere-container"></div>
+          <div class="sphere-container" id="sphere-container" aria-hidden="true"></div>
         </div>
       </div>
     </main>
