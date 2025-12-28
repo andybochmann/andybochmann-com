@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div class="loading-overlay" id="loading-overlay">
+      <div class="loading-spinner"></div>
+    </div>
+
     <div class="background-canvas" id="background-canvas"></div>
 
     <main class="container">
@@ -62,7 +66,13 @@
       </div>
     </main>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="sphere.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.module.js"
+        }
+      }
+    </script>
+    <script type="module" src="sphere.js"></script>
   </body>
 </html>

@@ -1,4 +1,6 @@
 // Sphere animation with mouse interaction
+import * as THREE from 'three';
+
 class WireframeSphere {
   constructor(containerId, backgroundId) {
     this.container = document.getElementById(containerId);
@@ -9,6 +11,10 @@ class WireframeSphere {
     this.isHovering = false;
     this.rotationSpeed = 1;
     this.targetRotationSpeed = 1;
+
+    // Detect device capabilities for performance optimization
+    this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    this.isLowEnd = this.isMobile || navigator.hardwareConcurrency <= 4;
 
     this.init();
     this.initBackground();
@@ -141,7 +147,12 @@ class WireframeSphere {
   }
 
   createBackgroundParticles() {
-    const particlesCount = 500;
+    // Adaptive particle count based on device capability
+    let particlesCount = 500;
+    if (this.isLowEnd) {
+      particlesCount = 150; // Reduced for mobile/low-end devices
+    }
+
     const positions = new Float32Array(particlesCount * 3);
 
     for (let i = 0; i < particlesCount * 3; i += 3) {
@@ -273,6 +284,28 @@ class WireframeSphere {
 }
 
 // Initialize when DOM is loaded
-document.addEventListener("DOMContentLoaded", () => {
-  new WireframeSphere("sphere-container", "background-canvas");
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    // Initialize the sphere
+    new WireframeSphere("sphere-container", "background-canvas");
+
+    // Hide loading overlay after a short delay to ensure rendering has started
+    setTimeout(() => {
+      const loadingOverlay = document.getElementById("loading-overlay");
+      if (loadingOverlay) {
+        loadingOverlay.classList.add("hidden");
+        // Remove from DOM after transition completes
+        setTimeout(() => {
+          loadingOverlay.remove();
+        }, 500);
+      }
+    }, 300);
+  } catch (error) {
+    console.error("Failed to initialize 3D visualization:", error);
+    // Hide loading overlay even on error
+    const loadingOverlay = document.getElementById("loading-overlay");
+    if (loadingOverlay) {
+      loadingOverlay.classList.add("hidden");
+    }
+  }
 });
