@@ -86,6 +86,84 @@ body {
     align-items: center;
 }
 
+/* Navigation */
+.top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(8, 10, 18, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(100, 140, 180, 0.1);
+    animation: fadeInDown 0.6s ease-out;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 16px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.95rem;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    color: #ffffff;
+    background: rgba(100, 140, 180, 0.15);
+}
+
+.nav-link:focus {
+    outline: 2px solid rgba(100, 140, 180, 0.6);
+    outline-offset: 2px;
+    color: #ffffff;
+}
+
+.nav-link:focus:not(:focus-visible) {
+    outline: none;
+}
+
+.nav-link:focus-visible {
+    outline: 2px solid rgba(100, 140, 180, 0.8);
+    outline-offset: 2px;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
 /* Load animation */
 @keyframes fadeInUp {
     from {
@@ -484,6 +562,19 @@ body {
 
 /* Responsive adjustments */
 @media (max-width: 900px) {
+    .nav-container {
+        padding: 14px 24px;
+    }
+
+    .nav-links {
+        gap: 4px;
+    }
+
+    .nav-link {
+        font-size: 0.875rem;
+        padding: 6px 12px;
+    }
+
     .card-content {
         flex-direction: column;
         min-height: auto;
@@ -606,6 +697,19 @@ body {
 }
 
 @media (max-width: 480px) {
+    .nav-container {
+        padding: 12px 20px;
+    }
+
+    .nav-links {
+        gap: 4px;
+    }
+
+    .nav-link {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
+
     .info {
         padding: 40px 30px;
     }
