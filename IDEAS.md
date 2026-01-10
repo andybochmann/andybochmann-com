@@ -42,11 +42,11 @@ A prioritized list of ideas to enhance andybochmann.com.
 
 - [ ] **Theme Toggle** - Add a light/dark mode toggle for user preference (current design is dark-only).
 
-- [ ] **Page Transitions** - Add smooth transitions between sections using CSS or JS animations.
+- [x] **Page Transitions** - Add smooth transitions between sections using CSS or JS animations.
 
 - [ ] **Scroll Progress Indicator** - Show reading/scroll progress in the navigation bar.
 
-- [ ] **Back to Top Button** - Add a floating button to return to the top of the page on longer scrolls.
+- [x] **Back to Top Button** - Add a floating button to return to the top of the page on longer scrolls.
 
 ### Technical
 
@@ -76,11 +76,11 @@ A prioritized list of ideas to enhance andybochmann.com.
 
 - [ ] **Additional 3D Interactions** - Add click/touch interactions to the sphere (e.g., click to randomize colors, zoom in/out).
 
-- [ ] **Particle Trail Effects** - Add mouse trail effects in the background for more visual interest.
+- [x] **Particle Trail Effects** - Add mouse trail effects in the background for more visual interest.
 
 - [ ] **Loading Animation Variety** - Consider a more engaging loading animation that relates to the 3D visualization.
 
-- [ ] **Micro-interactions** - Add subtle animations to skill tags on hover (beyond current transform).
+- [x] **Micro-interactions** - Add subtle animations to skill tags on hover (beyond current transform).
 
 - [ ] **Favicon Animation** - Create an animated favicon that matches the sphere aesthetic.
 
