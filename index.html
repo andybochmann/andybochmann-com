@@ -298,7 +298,7 @@
       -->
 
       <!-- Certifications Section -->
-      <section class="certifications-section" id="certifications" aria-label="Professional Certifications">
+      <section class="certifications-section section-reveal" id="certifications" aria-label="Professional Certifications">
         <h2 class="certifications-heading">Certifications</h2>
         <div class="certifications-grid">
           <div class="certification-item">
@@ -356,6 +356,16 @@
       backToTop.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
+
+      // Section reveal on scroll
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+          }
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.section-reveal').forEach(el => observer.observe(el));
     </script>
   </body>
 </html>
