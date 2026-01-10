@@ -1,0 +1,15 @@
+{
+  "name": "Andy Bochmann - Portfolio",
+  "short_name": "Andy B",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080a12",
+  "theme_color": "#080a12",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

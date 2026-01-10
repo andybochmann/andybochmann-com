@@ -50,13 +50,13 @@ A prioritized list of ideas to enhance andybochmann.com.
 
 ### Technical
 
-- [ ] **Update Three.js** - Current version is r128. Consider upgrading to a newer version for performance improvements and bug fixes.
+- [x] **Update Three.js** - Current version is r128. Consider upgrading to a newer version for performance improvements and bug fixes.
 
-- [ ] **Add Service Worker** - Implement PWA features for offline capability and faster repeat visits.
+- [x] **Add Service Worker** - Implement PWA features for offline capability and faster repeat visits.
 
-- [ ] **Performance Audit** - Run Lighthouse audit and optimize for Core Web Vitals.
+- [x] **Performance Audit** - Run Lighthouse audit and optimize for Core Web Vitals.
 
-- [ ] **Error Tracking** - Add error monitoring for the 3D visualization to catch client-side issues.
+- [x] **Error Tracking** - Add error monitoring for the 3D visualization to catch client-side issues.
 
 ---
 

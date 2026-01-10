@@ -23,6 +23,11 @@ class WireframeSphere {
   }
 
   init() {
+    // Check WebGL support before proceeding
+    if (!this.checkWebGLSupport()) {
+      throw new Error('WebGL not supported');
+    }
+
     // Scene setup for main sphere
     this.scene = new THREE.Scene();
 
@@ -237,6 +242,16 @@ class WireframeSphere {
     this.bgRenderer.setSize(window.innerWidth, window.innerHeight);
   }
 
+  checkWebGLSupport() {
+    try {
+      const canvas = document.createElement('canvas');
+      return !!(window.WebGLRenderingContext &&
+        (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
+    } catch (e) {
+      return false;
+    }
+  }
+
   animate() {
     requestAnimationFrame(() => this.animate());
 
@@ -302,6 +317,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }, 300);
   } catch (error) {
     console.error("Failed to initialize 3D visualization:", error);
+    reportError(error);
     // Hide loading overlay even on error
     const loadingOverlay = document.getElementById("loading-overlay");
     if (loadingOverlay) {
@@ -309,3 +325,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 });
+
+function reportError(error) {
+  const errorData = {
+    message: error.message,
+    stack: error.stack,
+    url: window.location.href,
+    userAgent: navigator.userAgent,
+    timestamp: new Date().toISOString()
+  };
+  console.error('3D Visualization Error:', errorData);
+}
