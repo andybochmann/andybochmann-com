@@ -16,6 +16,10 @@ class WireframeSphere {
     this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     this.isLowEnd = this.isMobile || navigator.hardwareConcurrency <= 4;
 
+    // Particle trail
+    this.trailParticles = [];
+    this.maxTrailParticles = 50;
+
     this.init();
     this.initBackground();
     this.animate();
@@ -252,6 +256,61 @@ class WireframeSphere {
     }
   }
 
+  createTrailParticle() {
+    if (this.isLowEnd) return; // Skip on low-end devices
+
+    const geometry = new THREE.SphereGeometry(0.02, 4, 4);
+    const material = new THREE.MeshBasicMaterial({
+      color: 0x648cb4,
+      transparent: true,
+      opacity: 0.6,
+    });
+    const particle = new THREE.Mesh(geometry, material);
+
+    // Convert mouse coords to 3D position
+    particle.position.set(
+      this.mouse.x * 5,
+      this.mouse.y * 3,
+      0
+    );
+    particle.userData.life = 1.0;
+    particle.userData.velocity = {
+      x: (Math.random() - 0.5) * 0.02,
+      y: (Math.random() - 0.5) * 0.02,
+      z: (Math.random() - 0.5) * 0.02
+    };
+
+    this.bgScene.add(particle);
+    this.trailParticles.push(particle);
+
+    // Limit particle count
+    if (this.trailParticles.length > this.maxTrailParticles) {
+      const old = this.trailParticles.shift();
+      this.bgScene.remove(old);
+      old.geometry.dispose();
+      old.material.dispose();
+    }
+  }
+
+  updateTrailParticles() {
+    for (let i = this.trailParticles.length - 1; i >= 0; i--) {
+      const p = this.trailParticles[i];
+      p.userData.life -= 0.02;
+      p.material.opacity = p.userData.life * 0.6;
+      p.position.x += p.userData.velocity.x;
+      p.position.y += p.userData.velocity.y;
+      p.position.z += p.userData.velocity.z;
+      p.scale.multiplyScalar(0.98);
+
+      if (p.userData.life <= 0) {
+        this.bgScene.remove(p);
+        p.geometry.dispose();
+        p.material.dispose();
+        this.trailParticles.splice(i, 1);
+      }
+    }
+  }
+
   animate() {
     requestAnimationFrame(() => this.animate());
 
@@ -291,6 +350,10 @@ class WireframeSphere {
     // Background sphere reacts slightly to mouse
     this.bgSphere1.rotation.x += this.mouse.y * 0.001;
     this.bgSphere1.rotation.y += this.mouse.x * 0.001;
+
+    // Update particle trail
+    if (Math.random() < 0.3) this.createTrailParticle();
+    this.updateTrailParticles();
 
     // Render
     this.renderer.render(this.scene, this.camera);
